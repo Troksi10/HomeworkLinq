@@ -89,12 +89,16 @@ namespace HomeworkLinq
             // find last female person older than 30 whose name starts with p
 
             Person lastFemaleOlderThan30NameWithP = people
-                                                         .Where(x => x.Gender == 'F')
-                                                         .Where(x => x.FirstName.StartsWith("P"))
-                                                         .Where(x => x.Age > 30)
-                                                         .LastOrDefault();
+                                                         .LastOrDefault(x => x.Gender == 'F' && x.FirstName.StartsWith("P") && x.Age > 30);
 
-            Console.WriteLine(lastFemaleOlderThan30NameWithP.Name);
+            if (lastFemaleOlderThan30NameWithP == null)
+            {
+                Console.WriteLine("Woman don't exist");
+            }
+            else
+            {
+                Console.WriteLine(lastFemaleOlderThan30NameWithP.Name);
+            }
 
             // Task 08
             // find first male younger than 40
